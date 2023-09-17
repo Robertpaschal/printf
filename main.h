@@ -44,41 +44,41 @@ typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
 int _processPrint(const char *fmt, int *i,
-		va_list list, char b[], int marks, int base, int _prec, int size);
+		va_list list, char b[], int flags, int width, int _prec, int size);
 
 /* FUNCTIONS */
 
 /* Handles characters and strings */
 int _printC(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int _printS(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int _printPerc(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 
 /* Handles numbers */
 int _printI(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int _printB(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int _printU(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int _printO(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int _printH(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int print_hexa_upper(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int print_hexa(va_list types, char map_to[],
-		char b[], int marks, char flag_ch, int base, int _prec, int size);
+		char b[], int flags, char flag_ch, int width, int _prec, int size);
 
 /* Handles non printable characters */
 int print_non_printable(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 
 /* Handles memory address */
 int print_pointer(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 
 /* Process other specifiers */
 int fetchFlags(const char *format, int *i);
@@ -88,23 +88,23 @@ int fetchSize(const char *format, int *i);
 
 /* Handles string in reverse */
 int print_reverse(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 
 /* Handles string in rot13 */
 int print_rot13string(va_list types, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 
-/* Handles base */
+/* Handles width */
 int handle_write_char(char c, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 int write_number(int is_positive, int ind, char b[],
-		int marks, int base, int _prec, int size);
-int write_num(int ind, char bff[], int marks, int base, int _prec,
+		int flags, int width, int _prec, int size);
+int write_num(int ind, char bff[], int flags, int width, int _prec,
 		int length, char padd, char extra_c);
 int write_pointer(char b[], int ind, int length,
-		int base, int marks, char padd, char extra_c, int padd_start);
+		int width, int flags, char padd, char extra_c, int padd_start);
 int write_unsgnd(int has_neg, int ind, char b[],
-		int marks, int base, int _prec, int size);
+		int flags, int width, int _prec, int size);
 
 /* UTILS */
 int _canPrint(char);
