@@ -1,69 +1,67 @@
 #include "main.h"
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdarg.h>
+
+void handle_loading(char b[], int *Lmain);
+
 /**
- * _printf - prints a character that expects the int specifier
- * @format: the character that is passed to the input
- * @...: list of argument
- * Return: 0 (Success)
+ * _printf - prints formated string to standard output
+ * @format: formated string containing the string to print with specifiers
+ * Return: count of Printed characters
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	unsigned int count;
-	int i;
-	int len;
-
-	va_start(args, format);
-	count = 0;
+	int s, gValuecount = 0, printNum = 0;
+	int marks, base, eval, size, load_ind = 0;
+	va_list list;
+	char b[BUFF_SIZE];
 
 	if (format == NULL)
 		return (-1);
 
-	while (*format)
+	va_start(list, format);
+
+	for (s = 0; format && format[s] != '\0'; s++)
 	{
-		if (*format != '%')
+		if (format[s] != '%')
 		{
-			write(1, format, 1);
-			count++;
+			b[load_ind++] = format[s];
+			if (load_ind == BUFF_SIZE)
+				handle_loading(b, &load_ind);
+			/* write(1, &format[i], 1); */
+			printNum++;
 		}
 		else
 		{
-			format++;
-			if (*format == '\0')
-				break;
-			if (*format == '%')
-			{
-				_mputchar(va_arg(args, int));
-				count++;
-			}
-			else if (*format == 'c')
-			{
-				char asci = va_arg(args, int);
-
-				if (asci >= 32 && asci <= 126)
-					_mputchar(asci);
-				else
-					return (-1);
-				count++;
-			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(args, char *);
-
-				len = strlen(str);
-				for (i = 0; i < len; i++)
-				{
-					_mputchar(str[i]);
-
-					count += len;
-				}
-			}
+			handle_loading(b, &load_ind);
+			marks = fetchmarks(format, &s);
+			base = fetchbase(format, &s, list);
+			eval = fetchPreci(format, &s, list);
+			size = fetchSize(format, &s);
+			++s;
+			gValuecount = _processPrint(format, &s, list, b,
+					marks, base, eval, size);
+			if (gValuecount == -1)
+				return (-1);
+			printNum += gValuecount;
 		}
-		format++;
 	}
-	va_end(args);
-	return (count);
+
+	handle_loading(b, &load_ind);
+
+	va_end(list);
+
+	return (printNum);
+}
+
+/**
+ * handle_loading - handles buffer contents if they exists
+ * @b:  Character arrays
+ * @Lmain: Index to add next character, representing the length.
+ */
+
+void handle_loading(char b[], int *Lmain)
+{
+	if (*Lmain > 0)
+		write(1, &b[0], *Lmain);
+
+	*Lmain = 0;
 }
