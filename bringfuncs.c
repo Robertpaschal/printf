@@ -15,7 +15,7 @@ int fetchMarks(const char *format, int *i)
 	int j, curr_i;
 	int flags = 0;
 	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
-	const int FLAGS_ARR[] = {F_SUBSTRACT, F_PLUS, F_NULL, F_STRUCT,
+	const int FLAGS_ARR[] = {F_SUBSTRACT, F_ADDITION, F_NULL, F_STRUCT,
 		F_WIDTH, 0};
 
 	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
