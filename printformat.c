@@ -3,7 +3,7 @@
 void handle_buffer(char b[], int *bIndex);
 
 /**
- * _printf - prints formated string to standard output
+ * _printf - prints main formated string to standard output
  * @format: formated string containing the string to print with specifiers
  * Return: count of Printed characters
  */
