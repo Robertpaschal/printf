@@ -11,7 +11,7 @@
  * @_prec: Precision specification
  * @size: Size specifier
  *
- * Return: Number of characters printed
+ * Return: Number of characters printed out
  */
 
 int _printU(va_list types, char b[],
