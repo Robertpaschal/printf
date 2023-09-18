@@ -6,7 +6,7 @@
  * _printU - Prints an unsigned number
  * @types: List of arguments
  * @b: Buffer array to handle print
- * @flags:  Calculates active flags
+ * @flags:  Calculates active mark flags
  * @width: get width
  * @_prec: Precision specification
  * @size: Size specifier
