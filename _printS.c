@@ -61,7 +61,7 @@ int _printS(va_list types, char b[],
 
 	if (width > length)
 	{
-		if (flags & F_SUBSTRACTION)
+		if (flags & F_SUBSTRACT)
 		{
 			write(1, &str[0], length);
 			for (i = width - length; i > 0; i--)

@@ -81,7 +81,7 @@ int print_pointer(va_list types, char b[],
 		int flags, int width, int _prec, int size);
 
 /* Process other specifiers */
-int fetchMark(const char *format, int *i);
+int fetchMarks(const char *format, int *i);
 int fetchSpace(const char *format, int *i, va_list list);
 int fetchPrecision(const char *format, int *i, va_list list);
 int fetchRange(const char *format, int *i);
